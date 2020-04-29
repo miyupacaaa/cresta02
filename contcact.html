@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cresta Design.</title>
+
+  <!-- swiper.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+  
+  <!-- googleフォント -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700|Roboto:400,500&display=swap&subset=japanese" rel="stylesheet">
+
+  <!-- css読み込み -->
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+
+<!-- header -->
+<div class="header">
+  <div class="content-wrapper">
+
+    <div class="header-logo">
+      <h1><a href ="">Cresta Design</a></h1>
+    </div>
+
+    <div id="sp-menuicon">
+      <span class="hamburger"></span>
+    </div>
+
+    <div class="sp-menu">
+      <ul>
+        <li><a href="#concept">Concept</a></li>
+        <li><a href="#service">Service</a></li>
+        <li><a href="#works">Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="close"></div>
+    </div>
+
+    <div class="pc-menu">
+      <nav>
+        <ul>
+          <li><a href="#concept">Concept</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#works">Works</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- contact-header -->
+<div id="contact-header">
+  <div class="content-wrapper">
+    <h2>Contact</h2>
+
+    <p class="end-text">Contact us</p>
+
+  </div>
+</div>
+
+<!-- contact-form -->
+<div id="contact-form">
+  <div class="content-wrapper">
+
+    <form action="post">
+      <div>
+        <label>問い合わせ内容</label><br>
+        <input type="checkbox"><span>資料請求</span><br class="sp-br">
+        <input type="checkbox"><span>お電話でのご相談を希望</span><br class="sp-br">
+        <input type="checkbox"><span>申し込み</span>
+      </div>
+
+    <form action="post">
+      <div>
+        <label for="name">担当者名</label>
+        <input type="text" id="name">
+      </div>
+
+      <div>
+        <label for="tel">電話番号</label>
+        <input type="text" id="tel">
+      </div>
+
+      <div>
+        <label for="mail">メールアドレス</label>
+        <input type="text" id="email">
+      </div>
+
+      <div>
+        <label for="message">お問い合わせ内容</label>
+        <textarea name="body" id="message"></textarea>
+      </div>
+
+      <div>
+        <input type="submit" value="送信">
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- footer -->
+<div id="footer">
+  <p>
+    <small>©︎crest.design all rights reserved</small>
+  </p>
+</div>
+
+<!-- TOPに戻るボタン -->
+<div id="page_top"><a href="#">TOP</a></div>
+
+<!-- jQueryの読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  $(function() {
+
+  // <!-- スマホナビの表示・非表示 -->
+     const hum = $('#sp-menuicon, .close, .sp-menu a')
+     const nav = $('.sp-menu')
+     hum.on('click', function(){
+        nav.toggleClass('toggle');
+     });
+
+  // TOPに戻るボタン
+    const pagetop = $('#page_top');
+    // ボタン非表示
+    pagetop.hide();
+    // 100px スクロールしたらボタン表示
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 100) {
+            pagetop.fadeIn();
+      } else {
+            pagetop.fadeOut();
+      }
+    });
+    pagetop.click(function () {
+      $('body, html').animate({ scrollTop: 0 }, 500);
+      return false;
+    });
+
+  // ページ内スクロール
+  const headerHight = 75; //ヘッダの高さ
+  $('a[href^="#"]').click(function(){
+    const time = 500;
+    const href= $(this).attr("href");
+    const target = $(href == "#" ? 'html' : href);
+    const distance = target.offset().top - headerHight;
+    $("html, body").animate({scrollTop:distance}, time, "swing");
+    return false;
+  });
+
+
+  // スクロールでフェードイン
+  $(window).scroll(function (){
+    $('.fadein').each(function(){
+        var elemPos = $(this).offset().top,
+            scroll = $(window).scrollTop(),
+            windowHeight = $(window).height();
+          if (scroll > elemPos - windowHeight + 100){
+              $(this).addClass('scrollin');
+            }
+    });
+  });
+
+  });
+  </script>
+</body>
+</html>
